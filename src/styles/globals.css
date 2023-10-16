@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* changes in this file will apply instantly while ones with tailwind classname need a bit of time to load */
+
+body {
+  @apply bg-black text-slate-100;
+}
