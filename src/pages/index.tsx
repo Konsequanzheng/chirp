@@ -10,6 +10,7 @@ import Image from "next/image";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { PageLayout } from "~/components/layout";
 
 dayjs.extend(relativeTime);
 
@@ -132,23 +133,19 @@ export default function Home() {
   if (!userLoaded) return <div />;
 
   return (
-    <main className="flex h-screen justify-center">
-      {/* md: makes it so that stylings only apply once size is medium or larger */}
-      <div className="h-full w-full border-x border-slate-400 md:max-w-2xl">
-        <div className="border-b border-slate-400 p-4">
-          {/* if there is no user, show the sign in button */}
-          {!isSignedIn && (
-            <div className="flex justify-center">
-              <SignInButton />
-            </div>
-          )}
-          {/* if there is a user, show the sign out button */}
-          {/* {user.isSignedIn && <SignOutButton />} */}
-          {isSignedIn && <CreatePostWizard />}
-        </div>
-
-        <Feed />
+    <PageLayout>
+      <div className="border-b border-slate-400 p-4">
+        {/* if there is no user, show the sign in button */}
+        {!isSignedIn && (
+          <div className="flex justify-center">
+            <SignInButton />
+          </div>
+        )}
+        {/* if there is a user, show the sign out button */}
+        {/* {user.isSignedIn && <SignOutButton />} */}
+        {isSignedIn && <CreatePostWizard />}
       </div>
-    </main>
+      <Feed />
+    </PageLayout>
   );
 }
